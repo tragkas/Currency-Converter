@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Currency Converter</title>
+    <style>
+      /* Center the calculator on the page */
+      #converter {
+        margin: 0 auto;
+        width: 300px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      /* Style the input fields and button */
+      input[type="number"], select, button {
+        padding: 8px;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
+
+      /* Style the button */
+      button {
+        background-color: #4CAF50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="converter">
+      <h2>Currency Converter</h2>
+      <label for="amount">Amount:</label>
+      <input type="number" id="amount">
+
+      <label for="from">From:</label>
+      <select id="from">
+        <option value="USD">US Dollar</option>
+        <option value="EUR">Euro</option>
+        <option value="GBP">British Pound</option>
+      </select>
+
+      <label for="to">To:</label>
+      <select id="to">
+        <option value="USD">US Dollar</option>
+        <option value="EUR">Euro</option>
+        <option value="GBP">British Pound</option>
+      </select>
+
+      <button onclick="convert()">Convert</button>
+
+      <p id="result"></p>
+    </div>
+
+    <script>
+      function convert() {
+        // Get the user input
+        const amount = document.getElementById("amount").value;
+        const from = document.getElementById("from").value;
+        const to = document.getElementById("to").value;
+
+        // Define the exchange rates
+        const rates = {
+          USD: {
+            EUR: 0.824, // 1 USD = 0.824 EUR
+            GBP: 0.724  // 1 USD = 0.724 GBP
+          },
+          EUR: {
+            USD: 1.214, // 1 EUR = 1.214 USD
+            GBP: 0.87   // 1 EUR = 0.87 GBP
+          },
+          GBP: {
+            USD: 1.381, // 1 GBP = 1.381 USD
+            EUR: 1.149  // 1 GBP = 1.149 EUR
+          }
+        };
+
+        // Convert the amount
+        const result = amount * rates[from][to];
+
+        // Display the result
+        document.getElementById("result").innerHTML = result.toFixed(2) + " " + to;
+      }
+    </script>
+  </body>
+</html>
